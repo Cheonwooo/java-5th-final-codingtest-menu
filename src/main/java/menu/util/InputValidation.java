@@ -31,7 +31,7 @@ public class InputValidation {
     }
 
     public void validateNull(String input) {
-        if(!input.isEmpty()) {
+        if (input.isEmpty()) {
             throw new IllegalArgumentException(INPUT_NULL.getMessage());
         }
     }
@@ -39,13 +39,13 @@ public class InputValidation {
     public void validateSeparator(String input) {
         String deleteBlank = input.replaceAll(" ", "");
         String deleteCharacter = deleteBlank.replaceAll("[0-9a-zA-Zㄱ-ㅎ-가-힣,]", "");
-        if(!deleteCharacter.isEmpty()) {
+        if (!deleteCharacter.isEmpty()) {
             throw new IllegalArgumentException(INPUT_CORRECT_SEPARATOR.getMessage());
         }
     }
 
     public void validateCoachName(List<String> coaches) {
-        for(String name : coaches) {
+        for (String name : coaches) {
             String deleteCharacter = name.replaceAll("[가-힣a-zA-Z]", "");
             if (!deleteCharacter.isEmpty()) {
                 throw new IllegalArgumentException(INPUT_EXACTLY_WORDS.getMessage());
@@ -54,22 +54,26 @@ public class InputValidation {
     }
 
     public void validateNameLength(List<String> coaches) {
-        for(String name : coaches) {
-            if(name.length() < MIN_NAME_LENGTH.getValue() || name.length() > MAX_NAME_LENGTH.getValue()) {
-                throw new IllegalArgumentException(String.format(LIMIT_COACH_LENGTH.getMessage(), MIN_NAME_LENGTH.getValue(), MAX_NAME_LENGTH.getValue()));
+        for (String name : coaches) {
+            if (name.length() < MIN_NAME_LENGTH.getValue() || name.length() > MAX_NAME_LENGTH.getValue()) {
+                throw new IllegalArgumentException(
+                        String.format(LIMIT_COACH_LENGTH.getMessage(), MIN_NAME_LENGTH.getValue(),
+                                MAX_NAME_LENGTH.getValue()));
             }
         }
     }
 
     public void validateCoachCount(List<String> coaches) {
-        if(coaches.size() < MIN_COACH_COUNT.getValue() || coaches.size() > MAX_COACH_COUNT.getValue()) {
-            throw new IllegalArgumentException(String.format(LIMIT_COACH_COUNT.getMessage(), MIN_COACH_COUNT.getValue(), MAX_COACH_COUNT.getValue()));
+        if (coaches.size() < MIN_COACH_COUNT.getValue() || coaches.size() > MAX_COACH_COUNT.getValue()) {
+            throw new IllegalArgumentException(String.format(LIMIT_COACH_COUNT.getMessage(), MIN_COACH_COUNT.getValue(),
+                    MAX_COACH_COUNT.getValue()));
         }
     }
 
     public void validateDislikeCount(List<String> dislikeMenus) {
-        if(dislikeMenus.size() > MAX_DISLIKE_COUNT.getValue()) {
-            throw new IllegalArgumentException(String.format(LIMIT_DISLIKE_COUNT.getMessage(), MAX_DISLIKE_COUNT.getValue()));
+        if (dislikeMenus.size() > MAX_DISLIKE_COUNT.getValue()) {
+            throw new IllegalArgumentException(
+                    String.format(LIMIT_DISLIKE_COUNT.getMessage(), MAX_DISLIKE_COUNT.getValue()));
         }
     }
 
